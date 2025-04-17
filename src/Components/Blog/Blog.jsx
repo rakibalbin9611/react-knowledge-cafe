@@ -1,6 +1,6 @@
 import React from "react";
 import { CiBookmark } from "react-icons/ci";
-const Blog = ({ blog }) => {
+const Blog = ({ blog, handleBookMark }) => {
   console.log(blog);
   const {
     title,
@@ -28,7 +28,10 @@ const Blog = ({ blog }) => {
           <p className="font-semibold text-xs text-gray-600 mr-2">
             {reading_time} min read
           </p>
-          <button className="text-2xl text-red-600">
+          <button
+            onClick={() => handleBookMark(blog)}
+            className="text-2xl text-red-600"
+          >
             <CiBookmark></CiBookmark>
           </button>
         </div>
