@@ -11,8 +11,9 @@ const Blogs = ({ handleBookMark, handleBookAsRead }) => {
   }, []);
   return (
     <div className="md:w-2/3">
-      {blogs.map((blog) => (
+      {blogs.map((blog, idx) => (
         <Blog
+          key={idx}
           blog={blog}
           handleBookMark={handleBookMark}
           handleBookAsRead={handleBookAsRead}

@@ -1,7 +1,7 @@
 import React from "react";
 import { CiBookmark } from "react-icons/ci";
 const Blog = ({ blog, handleBookMark, handleBookAsRead }) => {
-  console.log(blog);
+  // console.log(blog);
   const {
     title,
     author,
@@ -10,6 +10,7 @@ const Blog = ({ blog, handleBookMark, handleBookAsRead }) => {
     posted_date,
     reading_time,
     hashtags,
+    id,
   } = blog;
   return (
     <div className="mb-10">
@@ -17,7 +18,7 @@ const Blog = ({ blog, handleBookMark, handleBookAsRead }) => {
       <div className="md:flex justify-between items-center mt-4 mb-4">
         <div className="flex items-center">
           <div>
-            <img className="w-14 " src={author_img} alt="" srcset="" />
+            <img className="w-14 " src={author_img} alt="" />
           </div>
           <div className="ml-6">
             <h2 className="font-bold text-2xl">{author}</h2>
@@ -40,14 +41,14 @@ const Blog = ({ blog, handleBookMark, handleBookAsRead }) => {
       </div>
       <h2 className="mb-4 font-bold text-4xl">{title}</h2>
       <p className="mb-5">
-        {hashtags.map((hash) => (
-          <span className="mr-2">
+        {hashtags.map((hash, idx) => (
+          <span key={idx} className="mr-2">
             <a href="">#{hash}</a>
           </span>
         ))}
       </p>
       <button
-        onClick={() => handleBookAsRead(reading_time)}
+        onClick={() => handleBookAsRead(id, reading_time)}
         className="text-purple-800 font-bold underline"
       >
         Mark as read

@@ -1,4 +1,4 @@
-import { useDebugValue, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 
 import Blogs from "./Components/Blogs/Blogs";
@@ -9,8 +9,12 @@ function App() {
   const [bookmarks, setBookmarks] = useState([]);
   const [readingTime, setReadingTime] = useState(0);
 
-  const handleBookAsRead = (time) => {
+  const handleBookAsRead = (time, id) => {
     setReadingTime(readingTime + time);
+    const remainingBookmarks = bookmarks.filter(
+      (bookmark) => bookmark.id == !id
+    );
+    setBookmarks(remainingBookmarks);
   };
 
   const handleBookMark = (blog) => {
