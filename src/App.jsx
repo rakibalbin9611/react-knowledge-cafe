@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useDebugValue, useState } from "react";
 import "./App.css";
 
 import Blogs from "./Components/Blogs/Blogs";
@@ -7,6 +7,11 @@ import Header from "./Components/Header/Header";
 
 function App() {
   const [bookmarks, setBookmarks] = useState([]);
+  const [readingTime, setReadingTime] = useState(0);
+
+  const handleBookAsRead = (time) => {
+    setReadingTime(readingTime + time);
+  };
 
   const handleBookMark = (blog) => {
     const newBookMarks = [...bookmarks, blog];
@@ -16,8 +21,11 @@ function App() {
     <>
       <Header></Header>
       <main className="md:flex container mx-auto mt-8">
-        <Blogs handleBookMark={handleBookMark}></Blogs>
-        <BookMarks bookmarks={bookmarks}></BookMarks>
+        <Blogs
+          handleBookAsRead={handleBookAsRead}
+          handleBookMark={handleBookMark}
+        ></Blogs>
+        <BookMarks readingTime={readingTime} bookmarks={bookmarks}></BookMarks>
       </main>
     </>
   );

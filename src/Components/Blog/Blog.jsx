@@ -1,6 +1,6 @@
 import React from "react";
 import { CiBookmark } from "react-icons/ci";
-const Blog = ({ blog, handleBookMark }) => {
+const Blog = ({ blog, handleBookMark, handleBookAsRead }) => {
   console.log(blog);
   const {
     title,
@@ -21,16 +21,18 @@ const Blog = ({ blog, handleBookMark }) => {
           </div>
           <div className="ml-6">
             <h2 className="font-bold text-2xl">{author}</h2>
-            <p className="font-semibold text-xs text-gray-600">{posted_date}</p>
+            <p className="font-semibold text-base text-gray-600">
+              {posted_date}
+            </p>
           </div>
         </div>
         <div className="flex items-center">
-          <p className="font-semibold text-xs text-gray-600 mr-2">
+          <p className="font-semibold text-base text-gray-600 mr-2">
             {reading_time} min read
           </p>
           <button
             onClick={() => handleBookMark(blog)}
-            className="text-2xl text-red-600"
+            className="text-3xl text-red-600"
           >
             <CiBookmark></CiBookmark>
           </button>
@@ -44,7 +46,12 @@ const Blog = ({ blog, handleBookMark }) => {
           </span>
         ))}
       </p>
-      <button>Mark as read</button>
+      <button
+        onClick={() => handleBookAsRead(reading_time)}
+        className="text-purple-800 font-bold underline"
+      >
+        Mark as read
+      </button>
     </div>
   );
 };
